@@ -1,7 +1,9 @@
 #! by unknwhp
-import hashlib, os
+
+import hashlib, os, time
 os.system('clear') #linux
 #os.system('cls') #windows
+
 print '''
  _   _           _     _  ___ _ _           
 | | | | __ _ ___| |__ | |/ (_) | | ___ _ __ 
@@ -11,6 +13,7 @@ print '''
 
 ############### by unknwhp ###############
 '''
+
 wd = raw_input('Wordlist to use: ')
 hash = raw_input('Type a hash to crack: ')
 hasht = raw_input('Type the hash type : ')
@@ -21,14 +24,12 @@ if hasht not in acpt:
 	print '[*] Suported hashes: '
 	print '[+] md5, sha1, sha224, sha256, sha384, sha512'
 	exit()
-
+start = time.time()
 list = open(wd)
 text = list.readlines()
 encontrado = 0
 for word in text:
-
 	if word.endswith('\n'):
-
 		word = word[:-1]
 	if hasht == 'md5':
 		brute = hashlib.md5(word).hexdigest()
@@ -46,8 +47,11 @@ for word in text:
 	if brute == hash:
 		encontrado = 1
 		break
+tempo = int(time.time() - start)
+tempo = str(tempo)
 if encontrado == 1:
 	print '[+] Hash founded!'
         print '[*] Your hash is: '+word
+	print '[*] Time elapsed '+tempo+' seconds'
 else:
 	print '[-] Hash not founded'
