@@ -45,6 +45,7 @@ for word in text:
 
 	if brute == hash:
 		encontrado = 1
+		break
 if encontrado == 1:
 	print '[+] Hash founded!'
         print '[*] Your hash is: '+word
